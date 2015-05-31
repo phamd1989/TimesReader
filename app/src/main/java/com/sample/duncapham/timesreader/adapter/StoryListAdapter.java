@@ -1,6 +1,7 @@
 package com.sample.duncapham.timesreader.adapter;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,6 +43,14 @@ public class StoryListAdapter extends RecyclerView.Adapter<StoryListAdapter.View
                                      viewHolder.ivThumb);
         } else {
             viewHolder.ivThumb.setImageDrawable(null);
+        }
+
+        // 2 types of story cards
+        if (dataSet.get(i).getThumbWidth() < dataSet.get(i).getThumbHeight()) {
+            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            params.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+            viewHolder.tvTitle.setLayoutParams(params);
+            viewHolder.tvTitle.setBackgroundResource(Color.TRANSPARENT);
         }
         viewHolder.tvTitle.setText(dataSet.get(i).getTitle());
 
